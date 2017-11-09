@@ -20,7 +20,7 @@ LABEL gocd.version="17.11.0" \
   description="GoCD server based on alpine linux" \
   maintainer="GoCD <go-cd-dev@googlegroups.com>" \
   gocd.full.version="17.11.0-5520" \
-  gocd.git.sha="9f6909e2f64b07d2dce5cecd4ea5b92b8e19d6b1"
+  gocd.git.sha="447f05a43f568ce04fbaade785129def5c1cbcf1b78093afc65a1532d23729c4"
 
 # the ports that go server runs on
 EXPOSE 8153 8154
@@ -47,6 +47,7 @@ RUN \
   mv go-server-17.11.0 /go-server
 
 COPY logback-include.xml /go-server/config/logback-include.xml
+COPY template-cruise-config.xml /go-server/config/template-cruise-config.xml
 
 ADD docker-entrypoint.sh /
 

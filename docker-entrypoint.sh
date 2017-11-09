@@ -68,6 +68,14 @@ if [ "$1" = '/go-server/server.sh' ]; then
       try chown go:go "${VOLUME_DIR}/config/logback-include.xml"
     fi
 
+    # Ensure that there is a config file.
+    if [ ! -f "${SERVER_WORK_DIR}/config/cruise-config.xml" ]; then
+      cp /go-server/config/template-cruise-config.xml "${SERVER_WORK_DIR}/config/cruise-config.xml"
+    fi
+
+    # Replace autoregisterkey.
+    sed -i "s/AUTO_REGISTER_KEY/${AGENT_AUTO_REGISTER_KEY}/" "${SERVER_WORK_DIR}/config/cruise-config.xml"
+
     try exec /sbin/tini -- su-exec go "$0" "$@"
   fi
 fi

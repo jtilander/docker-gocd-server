@@ -47,6 +47,7 @@ RUN \
   mv go-server-<%= gocd_version %> /go-server
 
 COPY logback-include.xml /go-server/config/logback-include.xml
+COPY template-cruise-config.xml /go-server/config/template-cruise-config.xml
 
 ADD docker-entrypoint.sh /
 
